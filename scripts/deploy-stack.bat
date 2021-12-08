@@ -2,7 +2,7 @@ echo %TEMPLATE_NAME%
 echo  %STACK_NAME%
 echo %CHANGESET_MODE%
 echo %PARAMETERS_FILE_NAME%
-if /i "cloudformation/"%TEMPLATE_NAME% NEW ".yaml" (
+if /i "cloudformation/"%TEMPLATE_NAME% NEQ ".yaml" (
     echo "CloudFormation template $TEMPLATE_NAME does not exist. Make sure the extension is *.yaml and not (*.yml)"
     exit 0)
 
