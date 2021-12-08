@@ -1,40 +1,29 @@
-# Please ensure that you have the correct AWS credentials configured.
-# Enter the name of the stack, the parameters file name, the template name, then changeset condition, and finally the region name.
+$STACK_NAME=$env:STACK_NAME
+$PARAMETERS_FILE_NAME=$env:PARAMETERS_FILE_NAME
+$TEMPLATE_NAME=$env:TEMPLATE_NAME
+$CHANGESET_MODE=$env:CHANGESET_MODE
+$REGION="us-east-1"
 
-if [ $# -ne 5 ]; then
-    echo "Enter stack name, parameters file name, template file name to create, set changeset value (true or false), and enter region name. "
-    exit 0
-else
-    STACK_NAME=$1
-    PARAMETERS_FILE_NAME=$2
-    TEMPLATE_NAME=$3
-    CHANGESET_MODE=$4
-    REGION=$5
-fi
-
-if [[ "cloudformation/"$TEMPLATE_NAME != *.yaml ]]; then
+if "cloudformation/"$TEMPLATE_NAME NEQ *.yaml( 
     echo "CloudFormation template $TEMPLATE_NAME does not exist. Make sure the extension is *.yaml and not (*.yml)"
-    exit 0
-fi
+    exit 0)
 
-if [[ "parameters/"$PARAMETERS_FILE_NAME != *.properties ]]; then
+if "parameters/"$PARAMETERS_FILE_NAME NEQ *.properties()
     echo "CloudFormation parameters $PARAMETERS_FILE_NAME does not exist"
-    exit 0
-fi
+    exit 0)
 
-if [[ $CHANGESET_MODE == "true" ]] || [[ $CHANGESET_MODE == "True" ]]; then
+if  $CHANGESET_MODE == "true"  OR $CHANGESET_MODE == "True" (
     aws cloudformation deploy \
     --stack-name $STACK_NAME \
     --template-file cloudformation/$TEMPLATE_NAME \
     --parameter-overrides file://parameters/$PARAMETERS_FILE_NAME \
     --capabilities CAPABILITY_NAMED_IAM \
-    --region $REGION
+    --region $REGION)
 else
-    aws cloudformation deploy \
+    (aws cloudformation deploy \
     --stack-name $STACK_NAME \
     --template-file cloudformation/$TEMPLATE_NAME \
     --parameter-overrides file://parameters/$PARAMETERS_FILE_NAME \
     --capabilities CAPABILITY_NAMED_IAM \
     --region $REGION \
-    --no-execute-changeset
-fi
+    --no-execute-changeset)
