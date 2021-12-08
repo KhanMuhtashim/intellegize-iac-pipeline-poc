@@ -2,11 +2,11 @@ echo %TEMPLATE_NAME%
 echo  %STACK_NAME%
 echo %CHANGESET_MODE%
 echo %PARAMETERS_FILE_NAME%
-if "cloudformation/"%TEMPLATE_NAME% NEQ *.yaml( 
+if NOT "cloudformation/"%TEMPLATE_NAME% == *.yaml( 
     echo "CloudFormation template $TEMPLATE_NAME does not exist. Make sure the extension is *.yaml and not (*.yml)"
     exit 0)
 
-if "parameters/"%PARAMETERS_FILE_NAME% NEQ *.properties()
+if NOT "parameters/"%PARAMETERS_FILE_NAME% == *.properties()
     echo "CloudFormation parameters $PARAMETERS_FILE_NAME does not exist"
     exit 0)
 
