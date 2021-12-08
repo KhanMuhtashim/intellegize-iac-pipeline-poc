@@ -42,7 +42,7 @@ pipeline {
       }
       steps {
         ansiColor('xterm') {
-            bat 'scripts/deploy-stack.sh ${STACK_NAME} ${PARAMETERS_FILE_NAME} ${TEMPLATE_NAME} ${CHANGESET_MODE} ${REGION}'
+            bat 'scripts/deploy-stack.bat ${STACK_NAME} ${PARAMETERS_FILE_NAME} ${TEMPLATE_NAME} ${CHANGESET_MODE} ${REGION}'
         }
       }
     }
@@ -52,7 +52,7 @@ pipeline {
       }
       steps {
         ansiColor('xterm') {
-            bat 'scripts/deploy-stack.sh ${STACK_NAME} ${PARAMETERS_FILE_NAME} ${TEMPLATE_NAME} ${CHANGESET_MODE} ${REGION}'
+            bat 'scripts/deploy-stack.bat ${STACK_NAME} ${PARAMETERS_FILE_NAME} ${TEMPLATE_NAME} ${CHANGESET_MODE} ${REGION}'
         }
       }
     }
@@ -63,7 +63,7 @@ pipeline {
       }
       steps {
         ansiColor('xterm') {
-            bat 'scripts/delete-stack.sh ${STACK_NAME} ${REGION}'
+            bat 'scripts/delete-stack.bat ${STACK_NAME} ${REGION}'
         }
       }
     }
