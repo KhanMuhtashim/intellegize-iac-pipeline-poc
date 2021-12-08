@@ -1,5 +1,3 @@
-set REGION="us-east-1"
-
 if "cloudformation/"$TEMPLATE_NAME NEQ *.yaml( 
     echo "CloudFormation template $TEMPLATE_NAME does not exist. Make sure the extension is *.yaml and not (*.yml)"
     exit 0)
