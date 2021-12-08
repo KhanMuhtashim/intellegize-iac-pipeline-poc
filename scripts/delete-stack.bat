@@ -1,7 +1,5 @@
 aws cloudformation delete-stack \
 --stack-name %STACK_NAME% \
---region %REGION%
 
 aws cloudformation wait stack-delete-complete \
---stack-name %STACK_NAM% \
---region %REGION%
+--stack-name %STACK_NAM% 
