@@ -24,12 +24,6 @@ pipeline {
           script {
             if (!params.TOGGLE) {
                 currentBuild.result = 'ABORTED' //If you do not set the toggle flag to true before executing the build action, it will automatically abort the pipeline for any action.
-            } else {
-                if (params.ACTION == 'create-changeset') {
-                    env.CHANGESET_MODE = true
-                } else if (params.ACTION == 'deploy-stack'){
-                    env.DEPLOY_STACK = true
-                }
             }
           }
         }
@@ -42,7 +36,7 @@ pipeline {
       }
       steps {
         ansiColor('xterm') {
-            bat 'scripts/deploy-stack.bat ${STACK_OR_CHANGESET_NAME} ${PARAMETERS_FILE_NAME} ${TEMPLATE_NAME} ${DEPLOY_STACK} ${REGION}'
+            bat 'scripts/deploy-stack.bat ${STACK_OR_CHANGESET_NAME} ${PARAMETERS_FILE_NAME} ${TEMPLATE_NAME} ${REGION}'
         }
       }
     }
@@ -52,7 +46,7 @@ pipeline {
       }
       steps {
         ansiColor('xterm') {
-            bat 'scripts/deploy-stack.bat ${STACK_OR_CHANGESET_NAME} ${PARAMETERS_FILE_NAME} ${TEMPLATE_NAME} ${CHANGESET_MODE} ${DEPLOY_STACK} ${REGION}'
+            bat 'scripts/deploy-stack.bat ${STACK_OR_CHANGESET_NAME} ${PARAMETERS_FILE_NAME} ${TEMPLATE_NAME} ${REGION}'
         }
       }
     }
