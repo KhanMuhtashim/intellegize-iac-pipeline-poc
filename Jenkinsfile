@@ -1,7 +1,6 @@
 def REGION = 'us-east-1'
 pipeline {
   agent any
-
   parameters {
     string(name: 'STACK_OR_CHANGESET_NAME', defaultValue: 'myteststack', description: 'Enter the CloudFormation Stack Name.')
     string(name: 'PARAMETERS_FILE_NAME', defaultValue: 'example-stack-parameters.properties', description: 'Enter the Parameters File Name (Must contain file extension type *.properties)')
