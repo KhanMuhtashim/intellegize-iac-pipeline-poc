@@ -35,7 +35,7 @@ pipeline {
       }
       steps {
         ansiColor('xterm') {
-            bat 'scripts/create-stack.bat ${STACK_OR_CHANGESET_NAME} ${PARAMETERS_FILE_NAME} ${TEMPLATE_NAME}'
+            bat 'scripts/create-stack.bat ${STACK_OR_CHANGESET_NAME} ${PARAMETERS_FILE_NAME} ${TEMPLATE_NAME} ${BUILD_NUMBER}'
         }
       }
     }
@@ -45,7 +45,7 @@ pipeline {
       }
       steps {
         ansiColor('xterm') {
-            bat 'scripts/execute-change-set.bat ${STACK_OR_CHANGESET_NAME}'
+            bat 'scripts/execute-change-set.bat ${STACK_OR_CHANGESET_NAME} ${BUILD_NUMBER}'
         }
       }
     }
@@ -55,7 +55,7 @@ pipeline {
       }
       steps {
         ansiColor('xterm') {
-            bat 'scripts/create-change-set.bat ${STACK_OR_CHANGESET_NAME} ${TEMPLATE_NAME} ${PARAMETERS_FILE_NAME}'
+            bat 'scripts/create-change-set.bat ${STACK_OR_CHANGESET_NAME} ${TEMPLATE_NAME} ${PARAMETERS_FILE_NAME} ${BUILD_NUMBER}'
         }
       }
     }
