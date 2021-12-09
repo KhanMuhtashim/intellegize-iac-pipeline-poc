@@ -36,9 +36,19 @@ pipeline {
       }
     }
 
+    stage('deploy-stack') {
+      when {
+        expression { params.ACTION == 'deploy-stack'}
+      }
+      steps {
+        ansiColor('xterm') {
+            bat 'scripts/deploy-stack.bat ${STACK_OR_CHANGESET_NAME} ${PARAMETERS_FILE_NAME} ${TEMPLATE_NAME} ${DEPLOY_STACK} ${REGION}'
+        }
+      }
+    }
     stage('stack-execution') {
       when {
-        expression { params.ACTION == 'deploy-stack' || params.ACTION == 'execute-changeset' }
+        expression {params.ACTION == 'execute-changeset' }
       }
       steps {
         ansiColor('xterm') {
@@ -52,7 +62,7 @@ pipeline {
       }
       steps {
         ansiColor('xterm') {
-            bat 'scripts/deploy-stack.bat ${STACK_OR_CHANGESET_NAME} ${PARAMETERS_FILE_NAME} ${TEMPLATE_NAME} ${CHANGESET_MODE} ${DEPLOY_STACK} ${REGION}'
+            bat 'scripts/create-change-set.bat ${STACK_OR_CHANGESET_NAME} ${TEMPLATE_NAME} ${REGION}'
         }
       }
     }
