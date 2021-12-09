@@ -8,7 +8,7 @@ pipeline {
     string(name: 'TEMPLATE_NAME', defaultValue: 'S3-Bucket.yaml', description: 'Enter the CloudFormation Template Name (Must contain file extension type *.yaml)')
     choice(
       name: 'ACTION',
-      choices: ['create-changeset', 'execute-changeset', 'create-stack', 'delete-stack', 'sbc'],
+      choices: ['create-changeset', 'execute-changeset', 'create-stack', 'delete-stack'],
       description: 'CloudFormation Actions'
     )
     booleanParam(name: 'TOGGLE', defaultValue: false, description: 'Are you sure you want to perform this action?')
