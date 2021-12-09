@@ -26,9 +26,9 @@ pipeline {
                 currentBuild.result = 'ABORTED' //If you do not set the toggle flag to true before executing the build action, it will automatically abort the pipeline for any action.
             } else {
                 if (params.ACTION == 'create-changeset') {
-                    env.CHANGESET_MODE = false
-                } else {
                     env.CHANGESET_MODE = true
+                } else if (params.ACTION == 'deploy-stack'){
+                    env.CHANGESET_MODE = false
                 }
             }
           }
