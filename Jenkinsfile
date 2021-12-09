@@ -3,7 +3,7 @@ pipeline {
   agent any
 
   parameters {
-    string(name: 'STACK_NAME', defaultValue: 'myteststack', description: 'Enter the CloudFormation Stack Name.')
+    string(name: 'STACK_OR_CHANGESET_NAME', defaultValue: 'myteststack', description: 'Enter the CloudFormation Stack Name.')
     string(name: 'PARAMETERS_FILE_NAME', defaultValue: 'example-stack-parameters.properties', description: 'Enter the Parameters File Name (Must contain file extension type *.properties)')
     string(name: 'TEMPLATE_NAME', defaultValue: 'S3-Bucket.yaml', description: 'Enter the CloudFormation Template Name (Must contain file extension type *.yaml)')
     choice(
@@ -42,7 +42,7 @@ pipeline {
       }
       steps {
         ansiColor('xterm') {
-            bat 'scripts/deploy-stack.bat ${STACK_NAME} ${PARAMETERS_FILE_NAME} ${TEMPLATE_NAME} ${CHANGESET_MODE} ${REGION}'
+            bat 'scripts/deploy-stack.bat ${STACK_OR_CHANGESET_NAME} ${PARAMETERS_FILE_NAME} ${TEMPLATE_NAME} ${CHANGESET_MODE} ${REGION}'
         }
       }
     }
@@ -52,7 +52,7 @@ pipeline {
       }
       steps {
         ansiColor('xterm') {
-            bat 'scripts/deploy-stack.bat ${STACK_NAME} ${PARAMETERS_FILE_NAME} ${TEMPLATE_NAME} ${CHANGESET_MODE} ${REGION}'
+            bat 'scripts/deploy-stack.bat ${STACK_OR_CHANGESET_NAME} ${PARAMETERS_FILE_NAME} ${TEMPLATE_NAME} ${CHANGESET_MODE} ${REGION}'
         }
       }
     }
@@ -63,7 +63,7 @@ pipeline {
       }
       steps {
         ansiColor('xterm') {
-            bat 'scripts/delete-stack.bat ${STACK_NAME} ${REGION}'
+            bat 'scripts/delete-stack.bat ${STACK_OR_CHANGESET_NAME} ${REGION}'
         }
       }
     }
