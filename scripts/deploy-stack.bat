@@ -1,9 +1,9 @@
 echo %TEMPLATE_NAME%
-echo  %STACK_OR_CHANGESET_NAME%
+echo %STACK_OR_CHANGESET_NAME%
 echo %CHANGESET_MODE%
 echo %PARAMETERS_FILE_NAME%
 
-if  "%CHANGESET_MODE%"=="true" (
+if  %CHANGESET_MODE%==true (
     aws cloudformation create-change-set --stack-name %STACK_OR_CHANGESET_NAME% --change-set-name %STACK_OR_CHANGESET_NAME% --template-body cloudformation/%TEMPLATE_NAME%
     aws cloudformation describe-change-set --stack-name %STACK_OR_CHANGESET_NAME% --change-set-name %STACK_OR_CHANGESET_NAME%
 ) else  (
