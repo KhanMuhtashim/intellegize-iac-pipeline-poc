@@ -3,7 +3,7 @@ pipeline {
     stages {
         stage("Creating Stack") {
             steps {
-          	bat 'echo ${BUILD_NUMBER}'      
+          	bat 'echo %BUILD_NUMBER%'      
             }
         }
         
