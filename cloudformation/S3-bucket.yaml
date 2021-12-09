@@ -1,11 +1,11 @@
-{
-    "Resources": {
-        "S3Bucket": {
-            "Type": "AWS::S3::Bucket",
-            "DeletionPolicy": "Retain",
-            "Properties": {
-                "BucketName": "muhtashim-doc-example-bucket"
-            }
-        }
-    }
-}
+Parameters:
+  S3BucketName:
+    Type: String
+    Default: muhtashim-doc-example-bucket
+    Description: S3BucketName
+Resources:
+  S3Bucket:
+    Type: 'AWS::S3::Bucket'
+    DeletionPolicy: Retain
+    Properties:
+      BucketName: !Ref S3BucketName

@@ -56,7 +56,7 @@ pipeline {
       }
       steps {
         ansiColor('xterm') {
-            bat 'scripts/create-change-set.bat ${STACK_OR_CHANGESET_NAME} ${TEMPLATE_NAME}'
+            bat 'scripts/create-change-set.bat ${STACK_OR_CHANGESET_NAME} ${TEMPLATE_NAME} ${PARAMETERS_FILE_NAME}'
         }
       }
     }
