@@ -8,7 +8,7 @@ pipeline {
     string(name: 'TEMPLATE_NAME', defaultValue: 'S3-Bucket.yaml', description: 'Enter the CloudFormation Template Name (Must contain file extension type *.yaml)')
     choice(
       name: 'ACTION',
-      choices: ['create-changeset', 'execute-changeset', 'deploy-stack', 'delete-stack'],
+      choices: ['create-changeset', 'execute-changeset', 'create-stack', 'delete-stack'],
       description: 'CloudFormation Actions'
     )
     booleanParam(name: 'TOGGLE', defaultValue: false, description: 'Are you sure you want to perform this action?')
@@ -17,7 +17,7 @@ pipeline {
   stages {
     stage('action') {
       when {
-        expression { params.ACTION == 'create-changeset' || params.ACTION == 'execute-changeset' || params.ACTION == 'deploy-stack' || params.ACTION == 'delete-stack'}
+        expression { params.ACTION == 'create-changeset' || params.ACTION == 'execute-changeset' || params.ACTION == 'create-stack' || params.ACTION == 'delete-stack'}
       }
       steps {
         ansiColor('xterm') {
@@ -30,9 +30,9 @@ pipeline {
       }
     }
 
-    stage('deploy-stack') {
+    stage('create-stack') {
       when {
-        expression { params.ACTION == 'deploy-stack'}
+        expression { params.ACTION == 'create-stack'}
       }
       steps {
         ansiColor('xterm') {
@@ -40,7 +40,7 @@ pipeline {
         }
       }
     }
-    stage('stack-execution') {
+    stage('execute-changeset') {
       when {
         expression {params.ACTION == 'execute-changeset' }
       }
