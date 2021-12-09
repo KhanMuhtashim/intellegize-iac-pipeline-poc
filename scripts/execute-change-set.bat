@@ -1,0 +1,1 @@
+aws cloudformation execute-change-set --stack-name %STACK_OR_CHANGESET_NAME% --change-set-name %STACK_OR_CHANGESET_NAME%

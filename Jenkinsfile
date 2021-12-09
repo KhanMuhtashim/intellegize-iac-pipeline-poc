@@ -36,7 +36,7 @@ pipeline {
       }
       steps {
         ansiColor('xterm') {
-            bat 'scripts/deploy-stack.bat ${STACK_OR_CHANGESET_NAME} ${PARAMETERS_FILE_NAME} ${TEMPLATE_NAME} ${REGION}'
+            bat 'scripts/deploy-stack.bat ${STACK_OR_CHANGESET_NAME} ${PARAMETERS_FILE_NAME} ${TEMPLATE_NAME}'
         }
       }
     }
@@ -46,7 +46,7 @@ pipeline {
       }
       steps {
         ansiColor('xterm') {
-            bat 'scripts/deploy-stack.bat ${STACK_OR_CHANGESET_NAME} ${PARAMETERS_FILE_NAME} ${TEMPLATE_NAME} ${REGION}'
+            bat 'scripts/execute-change-set.bat ${STACK_OR_CHANGESET_NAME}'
         }
       }
     }
@@ -56,7 +56,7 @@ pipeline {
       }
       steps {
         ansiColor('xterm') {
-            bat 'scripts/create-change-set.bat ${STACK_OR_CHANGESET_NAME} ${TEMPLATE_NAME} ${REGION}'
+            bat 'scripts/create-change-set.bat ${STACK_OR_CHANGESET_NAME} ${TEMPLATE_NAME}'
         }
       }
     }
@@ -67,7 +67,7 @@ pipeline {
       }
       steps {
         ansiColor('xterm') {
-            bat 'scripts/delete-stack.bat ${STACK_OR_CHANGESET_NAME} ${REGION}'
+            bat 'scripts/delete-stack.bat ${STACK_OR_CHANGESET_NAME}'
         }
       }
     }
